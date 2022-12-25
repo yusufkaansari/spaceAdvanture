@@ -54,6 +54,7 @@ public class Platform : MonoBehaviour
         if (collision.CompareTag("Ayaklar"))
         {
             GameObject.FindGameObjectWithTag("Player").transform.parent = transform;
+            GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<OyuncuHareket>().ZiplamayiSifirla();
         }
     }
 }

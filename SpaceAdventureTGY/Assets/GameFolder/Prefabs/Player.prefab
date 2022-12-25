@@ -257,3 +257,4 @@ MonoBehaviour:
   hizlanma: 10
   yavaslama: 20
   ziplamaGucu: 50
+  ziplamaLimiti: 3
