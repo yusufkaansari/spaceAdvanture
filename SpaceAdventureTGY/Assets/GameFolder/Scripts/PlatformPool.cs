@@ -6,10 +6,16 @@ public class PlatformPool : MonoBehaviour
 {
     [SerializeField]
     GameObject platformPrefab = default;
+    [SerializeField]
+    GameObject olumculplatformPrefab = default;
+
+    [SerializeField]
+    GameObject playerPrefab = default;
 
     List<GameObject> platforms = new List<GameObject>();
 
     Vector2 platformPozisyon;
+    Vector2 playerPozisyon;
 
     [SerializeField]
     float platformArasiMesafe = default; 
@@ -29,15 +35,20 @@ public class PlatformPool : MonoBehaviour
     void PlatformUret()
     {
         platformPozisyon = new Vector2(0, 0);
-        for (int i = 0; i < 10; i++)
+        PlayerYerlestir();
+        for (int i = 0; i < 8; i++)
         {
             GameObject platform = Instantiate(platformPrefab, platformPozisyon, Quaternion.identity);
             platforms.Add(platform);
             platform.transform.parent = transform;
             platform.GetComponent<Platform>().Hareket = true;
             SonrakiPlatformPozisyon();
-             
         }
+        GameObject olumculPlatform = Instantiate(olumculplatformPrefab, platformPozisyon, Quaternion.identity);
+        platforms.Add(olumculPlatform);
+        olumculPlatform.transform.parent = transform;
+        olumculPlatform.GetComponent<OlumculPlatform>().Hareket = true;
+        SonrakiPlatformPozisyon();
     }
     void PlatformYerlestir()
     {
@@ -53,6 +64,17 @@ public class PlatformPool : MonoBehaviour
             SonrakiPlatformPozisyon();
         }
     }
+    void PlayerYerlestir()
+    {
+        playerPozisyon = new Vector2(0, 0.5f);
+
+        GameObject player = Instantiate(playerPrefab, playerPozisyon, Quaternion.identity);
+        GameObject ilkPlatform = Instantiate(platformPrefab, platformPozisyon, Quaternion.identity);
+        platforms.Add(ilkPlatform);
+        SonrakiPlatformPozisyon();
+        ilkPlatform.GetComponent<Platform>().Hareket = true;
+
+    }
     void SonrakiPlatformPozisyon()
     {
         // platformlar arasý dikey mesafe ayarlanýr
@@ -67,4 +89,5 @@ public class PlatformPool : MonoBehaviour
             platformPozisyon.x = -EkranHesaplayicisi.instance.Genislik / 2;
         }
     }
+
 }

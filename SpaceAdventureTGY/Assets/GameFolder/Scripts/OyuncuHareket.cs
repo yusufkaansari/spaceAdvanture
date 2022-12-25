@@ -18,6 +18,9 @@ public class OyuncuHareket : MonoBehaviour
 
     [SerializeField]
     float yavaslama = default;
+
+    [SerializeField]
+    float ziplamaGucu = default;
     private void Start()
     {
         body = GetComponent<Rigidbody2D>();
@@ -49,5 +52,23 @@ public class OyuncuHareket : MonoBehaviour
             animator.SetBool("Walk", false);
         }
         transform.Translate(velocity * Time.deltaTime);
+
+        if (Input.GetKeyDown("space"))
+        {
+            ZiplamayiBaslat();
+        }
+        if (Input.GetKeyUp("space")) 
+        {
+            ZiplamayiDurdur();
+        }
+    }
+    void ZiplamayiBaslat()
+    {
+        body.AddForce(new Vector2(0, ziplamaGucu), ForceMode2D.Impulse);
+        animator.SetBool("Jump", true);
+    }
+    void ZiplamayiDurdur()
+    {
+        animator.SetBool("Jump", false);
     }
 }
