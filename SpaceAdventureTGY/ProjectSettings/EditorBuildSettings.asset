@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Game.unity
+    path: Assets/Scenes/Menu.unity
+    guid: aadf35bc6951e33448b7e2541f487197
+  - enabled: 1
+    path: Assets/Scenes/Oyun.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Puan.unity
+    guid: 56fc7d8ac6ba7cc46b8bb59c285d0953
+  - enabled: 1
+    path: Assets/Scenes/Ayarlar.unity
+    guid: 56c09418de3162d46baddef6c62404e6
   m_configObjects: {}
