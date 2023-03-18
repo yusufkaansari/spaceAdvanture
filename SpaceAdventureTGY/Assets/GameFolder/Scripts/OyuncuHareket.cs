@@ -27,15 +27,32 @@ public class OyuncuHareket : MonoBehaviour
 
     int ziplamaSayisi;
 
+    Joystick Joystick;
+
+    JoystickButon joystickButon;
+
+    bool zipliyor;
+
+
     private void Start()
     {
         body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         defaultLocalScale = transform.localScale;
+        Joystick = FindObjectOfType<Joystick>();
+        joystickButon = FindObjectOfType<JoystickButon>();
     }
     private void Update()
     {
-        KlavyeKontrol();
+        JoystickKontrol();
+        /*
+        #if UNITY_EDITOR
+                KlavyeKontrol();
+        #else
+                JoystickKontrol();
+
+        #endif 
+        */
     }
     void KlavyeKontrol()
     {
@@ -65,6 +82,40 @@ public class OyuncuHareket : MonoBehaviour
         }
         if (Input.GetKeyUp("space")) 
         {
+            ZiplamayiDurdur();
+        }
+    }
+
+    void JoystickKontrol()
+    {
+        float hareketInput = Joystick.Horizontal;
+        if (hareketInput > 0)
+        {
+            velocity.x = Mathf.MoveTowards(velocity.x, hareketInput * hiz, hizlanma * Time.deltaTime);
+            animator.SetBool("Walk", true);
+            transform.localScale = new Vector3(defaultLocalScale.x, defaultLocalScale.y, defaultLocalScale.z);
+        }
+        else if (hareketInput < 0)
+        {
+            velocity.x = Mathf.MoveTowards(velocity.x, hareketInput * hiz, hizlanma * Time.deltaTime);
+            animator.SetBool("Walk", true);
+            transform.localScale = new Vector3(-defaultLocalScale.x, defaultLocalScale.y, defaultLocalScale.z);
+        }
+        else
+        {
+            velocity.x = Mathf.MoveTowards(velocity.x, 0, yavaslama * Time.deltaTime);
+            animator.SetBool("Walk", false);
+        }
+        transform.Translate(velocity * Time.deltaTime);
+
+        if (joystickButon.tusaBasildi && !zipliyor)
+        {
+            zipliyor = true;
+            ZiplamayiBaslat();
+        }
+        if (!joystickButon.tusaBasildi && zipliyor)
+        {
+            zipliyor = false;
             ZiplamayiDurdur();
         }
     }
