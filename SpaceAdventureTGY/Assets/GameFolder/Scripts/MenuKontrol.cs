@@ -12,13 +12,21 @@ public class MenuKontrol : MonoBehaviour
     [SerializeField]
     Button muzikButon = default;
 
-    [SerializeField]
-    bool muzikAcýk = default;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (Secenekler.KayitVarmi() == false)
+        {
+            Secenekler.KolayDegerAta(1);
+        }
+
+        if (Secenekler.MuzikAcikKayitVarmi() == false)
+        {
+            Secenekler.MuzikAcikDegerAta(1);
+        }
+
+        MuzikAyarlariniDenetle();
     }
 
     // Update is called once per frame
@@ -41,19 +49,31 @@ public class MenuKontrol : MonoBehaviour
         SceneManager.LoadScene("Ayarlar");
     }
 
+    
     public void Muzik()
     {
-        if(muzikAcýk)
+        if(Secenekler.MuzikAcikDegerOku() == 1)
         {
-            muzikAcýk = false;
+            Secenekler.MuzikAcikDegerAta(0);
             // muzik kapalý ikonu getirilir
             muzikButon.image.sprite = muzikIkonlar[0];
         }
         else
         {
-            muzikAcýk = true;
+            Secenekler.MuzikAcikDegerAta(1);
             // muzik açýk ikonu getirilir
             muzikButon.image.sprite = muzikIkonlar[1];
+        }
+    }
+    void MuzikAyarlariniDenetle()
+    {
+        if (Secenekler.MuzikAcikDegerOku() == 1)
+        {
+            muzikButon.image.sprite = muzikIkonlar[1];
+        }
+        else
+        {
+            muzikButon.image.sprite = muzikIkonlar[0];
         }
     }
 }

@@ -152,6 +152,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b6161df1f6df1e4d9ec1e4647c9ca23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kolayButon: {fileID: 1555414848}
+  ortaButon: {fileID: 1679151312}
+  zorButon: {fileID: 2143045014}
 --- !u!4 &416645227
 Transform:
   m_ObjectHideFlags: 0
@@ -797,7 +800,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1555414849}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 416645226}
+        m_TargetAssemblyTypeName: AyarlarKontrol, Assembly-CSharp
+        m_MethodName: SecenekSecildi
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: kolay
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1555414849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -918,7 +933,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1679151313}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 416645226}
+        m_TargetAssemblyTypeName: AyarlarKontrol, Assembly-CSharp
+        m_MethodName: SecenekSecildi
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: orta
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1679151313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1263,7 +1290,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2143045015}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 416645226}
+        m_TargetAssemblyTypeName: AyarlarKontrol, Assembly-CSharp
+        m_MethodName: SecenekSecildi
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: zor
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2143045015
 MonoBehaviour:
   m_ObjectHideFlags: 0

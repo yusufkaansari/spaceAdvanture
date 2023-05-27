@@ -42,6 +42,11 @@ public class PlatformPool : MonoBehaviour
             platforms.Add(platform);
             platform.transform.parent = transform;
             platform.GetComponent<Platform>().Hareket = true;
+            float rastGeleAltin = Random.Range(0.0f, 1.0f);
+            if (rastGeleAltin > 0.5f)
+            {
+                platform.GetComponent<Altin>().AltinAc();
+            }
             SonrakiPlatformPozisyon();
         }
         GameObject olumculPlatform = Instantiate(olumculplatformPrefab, platformPozisyon, Quaternion.identity);
@@ -61,6 +66,15 @@ public class PlatformPool : MonoBehaviour
             platforms[i + 5] = platforms[i];
             platforms[i] = temp;
             platforms[i + 5].transform.position = platformPozisyon;
+            if (platforms[i + 5].CompareTag("Platform"))
+            {
+                platforms[i + 5].GetComponent<Altin>().AltiniKapat();
+                float rastGeleAltin = Random.Range(0.0f, 1.0f);
+                if (rastGeleAltin > 0.5f)
+                {
+                    platforms[i + 5].GetComponent<Altin>().AltinAc();
+                }
+            }
             SonrakiPlatformPozisyon();
         }
     }
@@ -70,6 +84,7 @@ public class PlatformPool : MonoBehaviour
 
         GameObject player = Instantiate(playerPrefab, playerPozisyon, Quaternion.identity);
         GameObject ilkPlatform = Instantiate(platformPrefab, platformPozisyon, Quaternion.identity);
+        player.transform.parent = ilkPlatform.transform;
         platforms.Add(ilkPlatform);
         SonrakiPlatformPozisyon();
         ilkPlatform.GetComponent<Platform>().Hareket = true;

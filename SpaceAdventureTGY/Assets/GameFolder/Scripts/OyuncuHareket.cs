@@ -44,15 +44,13 @@ public class OyuncuHareket : MonoBehaviour
     }
     private void Update()
     {
-        JoystickKontrol();
-        /*
+        
         #if UNITY_EDITOR
                 KlavyeKontrol();
         #else
                 JoystickKontrol();
-
         #endif 
-        */
+        
     }
     void KlavyeKontrol()
     {
@@ -125,15 +123,26 @@ public class OyuncuHareket : MonoBehaviour
         {
             body.AddForce(new Vector2(0, ziplamaGucu), ForceMode2D.Impulse);
             animator.SetBool("Jump", true);
+            FindObjectOfType<SliderKontrol>().SliderDeger(ziplamaLimiti, ziplamaSayisi);
         }
     }
     void ZiplamayiDurdur()
     {
         animator.SetBool("Jump", false);
         ziplamaSayisi++;
+        FindObjectOfType<SliderKontrol>().SliderDeger(ziplamaLimiti, ziplamaSayisi);
     }
     public void ZiplamayiSifirla()
     {
         ziplamaSayisi = 0;
+        FindObjectOfType<SliderKontrol>().SliderDeger(ziplamaLimiti, ziplamaSayisi);
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Olum"))
+        {
+            FindObjectOfType<OyunKontrol>().OyunuBitir();
+        }
+    }
+
 }

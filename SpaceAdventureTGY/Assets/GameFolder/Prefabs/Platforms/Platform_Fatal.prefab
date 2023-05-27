@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Platform_Fatal
       objectReference: {fileID: 0}
+    - target: {fileID: 6749551811496295098, guid: 8f4aa12d0ac559c49b47a5aa0b4be91d, type: 3}
+      propertyPath: m_TagString
+      value: OlumculPlatform
+      objectReference: {fileID: 0}
     - target: {fileID: 7667215886631475877, guid: 8f4aa12d0ac559c49b47a5aa0b4be91d, type: 3}
       propertyPath: m_Size.x
       value: 4.77
