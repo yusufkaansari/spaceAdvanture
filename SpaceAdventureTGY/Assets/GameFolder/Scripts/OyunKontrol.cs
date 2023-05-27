@@ -25,15 +25,18 @@ public class OyunKontrol : MonoBehaviour
         oyunBittiPanel.SetActive(true);
         FindObjectOfType<Puan>().OyunBitti();
         UIKapat();
+        Time.timeScale = 0;
     }
 
     public void AnaMenuyeDon()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("Menu");
     }
 
     public void TekrarOyna()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("Oyun");
     }
     void UIAc()

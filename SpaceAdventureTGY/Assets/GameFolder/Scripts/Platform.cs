@@ -23,7 +23,20 @@ public class Platform : MonoBehaviour
     private void Start()
     {
         polygonCollider2D = GetComponent<PolygonCollider2D>();
-        randomHiz = Random.Range(0.5f, 1.0f);
+        
+
+        if (Secenekler.KolayDegerOku() == 1)
+        {
+            randomHiz = Random.Range(0.2f, 0.8f);
+        }
+        if (Secenekler.OrtaDegerOku() == 1)
+        {
+            randomHiz = Random.Range(0.5f, 1.0f);
+        }
+        if (Secenekler.ZorDegerOku() == 1)
+        {
+            randomHiz = Random.Range(0.8f, 1.2f);
+        }
 
         float objeGenislik = polygonCollider2D.bounds.size.x / 2;
 

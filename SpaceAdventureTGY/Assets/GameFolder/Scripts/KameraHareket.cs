@@ -12,9 +12,23 @@ public class KameraHareket : MonoBehaviour
 
     private void Start()
     {
-        hiz = 0.5f;
-        hizlanma = 0.05f;
-        maksimumHiz = 2.0f;
+        if (Secenekler.KolayDegerOku() == 1)
+        {
+            hiz = 0.3f;
+            hizlanma = 0.03f;
+            maksimumHiz = 1.5f;
+        }
+        if (Secenekler.OrtaDegerOku()==1)
+        {
+            hiz = 0.5f;
+            hizlanma = 0.05f;
+            maksimumHiz = 2.0f;
+        }
+        if (Secenekler.ZorDegerOku() == 1) { 
+            hiz = 0.8f;
+            hizlanma = 0.08f;
+            maksimumHiz = 2.5f;
+        }
     }
     private void Update()
     {
