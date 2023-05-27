@@ -121,6 +121,7 @@ public class OyuncuHareket : MonoBehaviour
     {
         if (ziplamaSayisi < ziplamaLimiti)
         {
+            FindObjectOfType<SesKontrol>().ZiplamaSes();
             body.AddForce(new Vector2(0, ziplamaGucu), ForceMode2D.Impulse);
             animator.SetBool("Jump", true);
             FindObjectOfType<SliderKontrol>().SliderDeger(ziplamaLimiti, ziplamaSayisi);

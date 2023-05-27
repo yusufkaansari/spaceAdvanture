@@ -22,6 +22,7 @@ public class OyunKontrol : MonoBehaviour
 
     public void OyunuBitir()
     {
+        FindObjectOfType<SesKontrol>().OyunBittiSes();
         oyunBittiPanel.SetActive(true);
         FindObjectOfType<Puan>().OyunBitti();
         FindObjectOfType<OyuncuHareket>().OyunBitti();

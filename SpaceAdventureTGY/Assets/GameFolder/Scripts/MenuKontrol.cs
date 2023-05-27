@@ -55,12 +55,14 @@ public class MenuKontrol : MonoBehaviour
         if(Secenekler.MuzikAcikDegerOku() == 1)
         {
             Secenekler.MuzikAcikDegerAta(0);
+            MuzikKontrol.instance.MuzikCal(false);
             // muzik kapalý ikonu getirilir
             muzikButon.image.sprite = muzikIkonlar[0];
         }
         else
         {
             Secenekler.MuzikAcikDegerAta(1);
+            MuzikKontrol.instance.MuzikCal(true);
             // muzik açýk ikonu getirilir
             muzikButon.image.sprite = muzikIkonlar[1];
         }
@@ -70,10 +72,12 @@ public class MenuKontrol : MonoBehaviour
         if (Secenekler.MuzikAcikDegerOku() == 1)
         {
             muzikButon.image.sprite = muzikIkonlar[1];
+            MuzikKontrol.instance.MuzikCal(true);
         }
         else
         {
             muzikButon.image.sprite = muzikIkonlar[0];
+            MuzikKontrol.instance.MuzikCal(false);
         }
     }
 }

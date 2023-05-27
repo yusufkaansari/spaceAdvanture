@@ -94,6 +94,12 @@ public class PlatformPool : MonoBehaviour
     {
         // platformlar arasý dikey mesafe ayarlanýr
         platformPozisyon.y += platformArasiMesafe;
+        SiraliPozisyon();
+
+
+    }
+    void KarmaPozisyon()
+    {
         float random = Random.Range(0.0f, 1.0f);
         if (random < 0.5f)
         {
@@ -102,6 +108,20 @@ public class PlatformPool : MonoBehaviour
         else
         {
             platformPozisyon.x = -EkranHesaplayicisi.instance.Genislik / 2;
+        }
+    }
+    bool yon = true;
+    void SiraliPozisyon()
+    {
+        if (yon)
+        {
+            platformPozisyon.x = EkranHesaplayicisi.instance.Genislik / 2;
+            yon = false;
+        }
+        else
+        {
+            platformPozisyon.x = -EkranHesaplayicisi.instance.Genislik / 2;
+            yon = true;
         }
     }
 

@@ -43,6 +43,7 @@ public class Puan : MonoBehaviour
 
     public void AltinKazan()
     {
+        FindObjectOfType<SesKontrol>().AltinSes();
         altin++;
         altinText.text = "X " + altin;
     }
