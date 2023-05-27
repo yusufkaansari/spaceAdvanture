@@ -50,4 +50,11 @@ public class OlumculPlatform : MonoBehaviour
             transform.position = pingPong;
         }
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Ayaklar")
+        {
+            FindObjectOfType<OyunKontrol>().OyunuBitir();
+        }
+    }
 }

@@ -145,4 +145,9 @@ public class OyuncuHareket : MonoBehaviour
         }
     }
 
+    public void OyunBitti()
+    {
+        Destroy(gameObject);
+    }
+
 }

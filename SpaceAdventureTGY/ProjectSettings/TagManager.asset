@@ -45,6 +45,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Arkaplan
+    uniqueID: 2321620023
+    locked: 0
+  - name: Gezegen
+    uniqueID: 1589227695
+    locked: 0
   - name: Platform
     uniqueID: 1269693117
     locked: 0

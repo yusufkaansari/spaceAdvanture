@@ -8,10 +8,11 @@ public class KameraHareket : MonoBehaviour
     float hizlanma;
     float maksimumHiz;
 
-    bool hareket=true;
+    bool hareket;
 
     private void Start()
     {
+        hareket = true;
         if (Secenekler.KolayDegerOku() == 1)
         {
             hiz = 0.3f;
@@ -46,5 +47,9 @@ public class KameraHareket : MonoBehaviour
         {
             hiz = maksimumHiz;
         }
+    }
+    public void OyunBitti()
+    {
+        hareket = false;
     }
 }

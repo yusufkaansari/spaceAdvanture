@@ -11,6 +11,7 @@ public class ArkaPlanHareketKontrol : MonoBehaviour
     {
         arkaPlanKonum = transform.position.y;
         mesafe=GetComponent<SpriteRenderer>().bounds.extents.y *2;
+        FindObjectOfType<Gezegenler>().GezegenYerlestir(arkaPlanKonum);
     }
     private void Update()
     {
@@ -23,6 +24,7 @@ public class ArkaPlanHareketKontrol : MonoBehaviour
     {   
         // arkaplan gorselini yukarýya tasima islemi icin konum bilgisi
         arkaPlanKonum += (mesafe * 2);
+        FindObjectOfType<Gezegenler>().GezegenYerlestir(arkaPlanKonum);
         // arkaplan gorselini bir diger arkaplan objesinin ustune tasima islemi
         transform.position = new Vector2(0, arkaPlanKonum);  
     }
