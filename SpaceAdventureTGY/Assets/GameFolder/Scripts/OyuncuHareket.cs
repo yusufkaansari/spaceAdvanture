@@ -44,13 +44,20 @@ public class OyuncuHareket : MonoBehaviour
     }
     private void Update()
     {
-        
-        #if UNITY_EDITOR
-                KlavyeKontrol();
-        #else
-                JoystickKontrol();
-        #endif 
-        
+
+#if UNITY_ANDROID
+        JoystickKontrol();
+
+#elif UNITY_EDITOR
+        //KlavyeKontrol();
+        MergeControls();
+
+#elif UNITY_STANDALONE_WIN
+        KlavyeKontrol();
+#elif UNITY_WEBGL
+        MergeControls();
+#endif
+
     }
     void KlavyeKontrol()
     {
@@ -106,6 +113,60 @@ public class OyuncuHareket : MonoBehaviour
         }
         transform.Translate(velocity * Time.deltaTime);
 
+        if (joystickButon.tusaBasildi && !zipliyor)
+        {
+            zipliyor = true;
+            ZiplamayiBaslat();
+        }
+        if (!joystickButon.tusaBasildi && zipliyor)
+        {
+            zipliyor = false;
+            ZiplamayiDurdur();
+        }
+    }
+    void MergeControls()
+    {
+        float hareketInput = Input.GetAxisRaw("Horizontal");
+        float hareketInputJoystick = Joystick.Horizontal;
+        if (hareketInput > 0)
+        {
+            velocity.x = Mathf.MoveTowards(velocity.x, hareketInput * hiz, hizlanma * Time.deltaTime);
+            animator.SetBool("Walk", true);
+            transform.localScale = new Vector3(defaultLocalScale.x, defaultLocalScale.y, defaultLocalScale.z);
+        }
+        else if (hareketInput < 0)
+        {
+            velocity.x = Mathf.MoveTowards(velocity.x, hareketInput * hiz, hizlanma * Time.deltaTime);
+            animator.SetBool("Walk", true);
+            transform.localScale = new Vector3(-defaultLocalScale.x, defaultLocalScale.y, defaultLocalScale.z);
+        }
+        else if (hareketInputJoystick > 0)
+        {
+            velocity.x = Mathf.MoveTowards(velocity.x, hareketInputJoystick * hiz, hizlanma * Time.deltaTime);
+            animator.SetBool("Walk", true);
+            transform.localScale = new Vector3(defaultLocalScale.x, defaultLocalScale.y, defaultLocalScale.z);
+        }
+        else if (hareketInputJoystick < 0)
+        {
+            velocity.x = Mathf.MoveTowards(velocity.x, hareketInputJoystick * hiz, hizlanma * Time.deltaTime);
+            animator.SetBool("Walk", true);
+            transform.localScale = new Vector3(-defaultLocalScale.x, defaultLocalScale.y, defaultLocalScale.z);
+        }
+        else
+        {
+            velocity.x = Mathf.MoveTowards(velocity.x, 0, yavaslama * Time.deltaTime);
+            animator.SetBool("Walk", false);
+        }
+        transform.Translate(velocity * Time.deltaTime);
+
+        if (Input.GetKeyDown("space"))
+        {
+            ZiplamayiBaslat();
+        }
+        if (Input.GetKeyUp("space"))
+        {
+            ZiplamayiDurdur();
+        }
         if (joystickButon.tusaBasildi && !zipliyor)
         {
             zipliyor = true;
