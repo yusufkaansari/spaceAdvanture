@@ -33,6 +33,8 @@ public class OyuncuHareket : MonoBehaviour
 
     bool zipliyor;
 
+    [SerializeField]
+    int suruklemeSpeed;
 
     private void Start()
     {
@@ -45,8 +47,9 @@ public class OyuncuHareket : MonoBehaviour
     private void Update()
     {
 
+
 #if UNITY_ANDROID
-        JoystickKontrol();
+        TouchControl();
 
 #elif UNITY_EDITOR
         //KlavyeKontrol();
@@ -176,6 +179,55 @@ public class OyuncuHareket : MonoBehaviour
         {
             zipliyor = false;
             ZiplamayiDurdur();
+        }
+    }
+
+    void TouchControl()
+    {
+        Vector3 position = transform.position;
+        if (Input.touchCount > 0)
+        {
+            // kaç parmak ile basýldýðý ve ilk parmaðýn deðeri
+            Touch finger = Input.GetTouch(0);
+            //Debug.Log(Camera.main.ScreenToWorldPoint( finger.deltaPosition));
+            if (finger.deltaPosition.x > suruklemeSpeed)
+            {
+                //Debug.Log("saða gidiyor");
+                velocity.x = Mathf.MoveTowards(velocity.x, 1 * hiz, hizlanma * Time.deltaTime);
+                animator.SetBool("Walk", true);
+                transform.localScale = new Vector3(defaultLocalScale.x, defaultLocalScale.y, defaultLocalScale.z);
+
+            }
+            if (finger.deltaPosition.x < (-1)*suruklemeSpeed )
+            {
+                //Debug.Log("sola gidiyor");
+                velocity.x = Mathf.MoveTowards(velocity.x, (-1) * hiz, hizlanma * Time.deltaTime);
+                animator.SetBool("Walk", true);
+                transform.localScale = new Vector3(-defaultLocalScale.x, defaultLocalScale.y, defaultLocalScale.z);
+
+            }
+
+            if (finger.phase == TouchPhase.Ended)
+            {
+                velocity.x = Mathf.MoveTowards(velocity.x, 0, yavaslama * Time.deltaTime);
+                animator.SetBool("Walk", false);
+            }
+
+            transform.Translate(velocity * Time.deltaTime);
+
+            if (Input.touchCount > 1 )
+            {
+
+                Touch finger2 = Input.GetTouch(1);
+                if (finger2.phase == TouchPhase.Began)
+                {
+                    ZiplamayiBaslat();
+                }
+                if(finger2.phase == TouchPhase.Ended)
+                {
+                    ZiplamayiDurdur();
+                }
+            }
         }
     }
     void ZiplamayiBaslat()

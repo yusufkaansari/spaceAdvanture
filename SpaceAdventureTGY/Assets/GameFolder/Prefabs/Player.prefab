@@ -259,6 +259,7 @@ MonoBehaviour:
   yavaslama: 20
   ziplamaGucu: 50
   ziplamaLimiti: 3
+  suruklemeSpeed: 15
 --- !u!114 &4266551117237117827
 MonoBehaviour:
   m_ObjectHideFlags: 0

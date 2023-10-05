@@ -41,16 +41,16 @@ public class OyunKontrol : MonoBehaviour
     }
     void UIAc()
     {
-        joystick.SetActive(true);
-        ziplamaButonu.SetActive(true);
+        //joystick.SetActive(true);
+        //ziplamaButonu.SetActive(true);
         tabele.SetActive(true);
         menuButonu.SetActive(true);
         slider.SetActive(true);
     }
     void UIKapat()
     {
-        joystick.SetActive(false);
-        ziplamaButonu.SetActive(false);
+        //joystick.SetActive(false);
+        //ziplamaButonu.SetActive(false);
         tabele.SetActive(false);
         menuButonu.SetActive(false);
         slider.SetActive(false);
